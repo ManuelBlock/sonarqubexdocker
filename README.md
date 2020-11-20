@@ -13,6 +13,6 @@ This application downloads all the necessary programs to make an analysis and up
 
 SonarQube x Docker download the SonarQube Scanner using npm, create a Docker container with a SonarQube server and realize a dependency analysis downloading Dependency Check from Maven or analyzing a .war/.jar file downloading Dependency Check CLI from the original GitHub. 
 
-There is a guide (in Spanish by now) explaining how to use it. 
+I will write a complete guide.
 
 Enjoy
