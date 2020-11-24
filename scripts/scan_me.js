@@ -1,6 +1,6 @@
 const scanner = require('sonarqube-scanner');
 
-var name, description;
+var name, description, folder;
 let opt = require('./conf_sonar_scan')
 
 const readline = require("readline");
@@ -11,9 +11,12 @@ const rl = readline.createInterface({
 
 rl.question("Name of the project: ", function(name_in) {
     rl.question("Description of the project: ", function(description_in) {
-        name = name_in;
-        description = description_in;
-        rl.close();
+        rl.question("Folder with source files (ex. src, Main..): ", function(folder_in) {
+            name = name_in;
+            description = description_in;
+            folder = folder_in;
+            rl.close();
+        });
     });
 });
 
@@ -24,7 +27,7 @@ rl.on("close", function() {
                 'sonar.projectKey': opt.sonar.projectKey,
                 'sonar.projectName': name,
                 'sonar.projectDescription': description,
-                'sonar.sources': opt.sonar.sources,
+                'sonar.sources': folder,
                 'sonar.java.binaries': opt.sonar.java_binaries,
                 'sonar.projectBaseDir': opt.sonar.projectBaseDir,
                 'sonar.sourceEncoding': opt.sonar.sourceEncoding,

@@ -4,7 +4,6 @@
 call cd req
 call mkdir dc
 call cd dc
-call mkdir input
 
 ::This avoid download and update dependency check if it exists
 if not exist dependency-check (
@@ -26,10 +25,9 @@ if not exist ..\..\..\target (
 )
 
 ::This command move the report to the target folder to upload it to SonarQube during the analysis
-call move "dependency-check\bin\dependency-check-report.html" "..\..\..\target"
+call move "dependency-check-report.html" "..\..\..\target"
 
 echo Report was properly moved to the correct file!
 echo Deleting zip file if it was downloaded and input folder
 call del dependency-check-6.0.3-release.zip
-call del input
 cd ../../
