@@ -12,15 +12,14 @@ if not exist dependency-check (
     call tar -xf dependency-check-6.0.3-release.zip
 )
 
-echo Please place the .war file or the .jar file into the input folder, press enter to continue
-echo Press any key to skip the timer if you already did it
-echo Friendly advice, use an easy name (ex. app.war)
-set /p asd="Hit enter to continue"
-set /p file=Please, paste full name (with extension) of the war/jar: 
+echo Let's check the .NET project
+call dir ..\..\..\
+echo Please type the name of the folder you want to analyze
+set /p folder="Name of the folder: "
 
 ::This command print the output of the dependency check
 ::It will help to determine if there is any problem
-call dependency-check\bin\dependency-check.bat -s input\%file%
+call dependency-check\bin\dependency-check.bat -s "..\..\..\%folder%"
 
 if not exist ..\..\..\target (
     mkdir ..\..\..\target
