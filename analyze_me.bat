@@ -10,8 +10,14 @@ call docker run --name sonarqube -d -p 9000:9000 sonarqube
 echo This timeout lets the sonarqube container runs completely
 call timeout 120
 echo Analysing with Dependency Check
-set /p dc_yn="Is it a maven project or not? [y/n]:"
-if %dc_yn%==y (
+set /p code="Is it a Java or .NET project [java/net]: "
+if "%code%"=="net" (
+    call scripts\dc_me_net.bat
+)
+if "%code%"=="java" (
+set /p dc_yn="Is it a maven project or not? [y/n]: "
+)
+if "%code%"=="java" if "%dc_yn%"=="y" (
     call scripts\dc_me.bat
 ) else (
     call scripts\dc_me_no_mvn.bat
