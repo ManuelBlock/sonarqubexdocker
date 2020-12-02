@@ -1,3 +1,5 @@
 
 req/dc/dependency-check/
 req/.wget-hsts
+node_modules
+package-lock.json

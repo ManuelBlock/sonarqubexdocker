@@ -25,4 +25,6 @@ if "%code%"=="java" if "%dc_yn%"=="y" (
 ::Run sonarqube-scanner
 echo Executing the sonarqube scanner
 call node scripts\scan_me.js
+call node script\parse_me.js
+call del allRecords.json
 set /p exit="Press intro to exit..."
