@@ -8,6 +8,8 @@ RUN apk update
 RUN apk add --update nodejs npm
 RUN node -v
 RUN npm -v
+RUN apk add python3
+RUN apk add py3-pip
 ENV SONARQUBE_HOME=/opt/sonarqube
 RUN cd  $SONARQUBE_HOME/extensions/plugins/
 RUN wget -P /opt/sonarqube/extensions/plugins https://github.com/dependency-check/dependency-check-sonar-plugin/releases/download/2.0.6/sonar-dependency-check-plugin-2.0.6.jar

@@ -6,7 +6,7 @@ call npm install sonarqube-scanner --save-dev
 echo Creating the sonarqube image
 call docker build -t sonarqube .
 echo Running the sonarqube container
-call docker run --name sonarqube -d -p 9000:9000 sonarqube
+call docker run --mount type=bind,source="$(pwd)"/scripts/parser,target=/parser --name sonarqube -d -p 9000:9000 sonarqube
 echo This timeout lets the sonarqube container runs completely
 call timeout 120
 echo Analysing with Dependency Check
@@ -26,5 +26,8 @@ if "%code%"=="java" if "%dc_yn%"=="y" (
 echo Executing the sonarqube scanner
 call node scripts\scan_me.js
 call node script\parse_me.js
-call del allRecords.json
+call move .\allRecords.json .\scripts\parser\
+call docker exec -d sonarqube python3 
+call mkdir result
+call move .\scripts\parser\resultados.csv .\result\AUD_COD_YYYYMMDD_PROJECT_NAME.csv
 set /p exit="Press intro to exit..."
