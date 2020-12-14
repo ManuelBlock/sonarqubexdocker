@@ -24,7 +24,7 @@ async function getSolutionsCWE() {
                 // The whole response has been received. Print out the result.
                 resp.on('end', () => {
                     var res = JSON.parse(data);
-                    element.solution = res.rule.fixRecommendations.replace(/<\/?[^>]+(>|$)/g, "");;
+                    element.solution = res.rule.fixRecommendations.replace(/<\/?[^>]+(>|$)/g, "");
 
                     let er = /CWE-(\d+)/g
                     element.cwe = res.rule.fixRecommendations.match(er);
