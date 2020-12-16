@@ -32,4 +32,5 @@ call move .\allRecords.json .\scripts\parser\
 call docker exec sonarqube python3 /parser/HTMLtoJSON.py
 call mkdir result
 call move .\scripts\parser\resultados.csv .\result\AUD_COD_YYYYMMDD_PROJECT_NAME.csv
+call move ..\target\dependency-check-report.csv .\result\AUD_DC_YYYYMMDD_PROJECT_name.csv
 set /p exit="Press intro to exit..."
