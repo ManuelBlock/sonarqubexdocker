@@ -29,7 +29,7 @@ echo Let sonarqube to prepare the analysis
 call timeout 300
 call node scripts\parse_me.js
 call move .\allRecords.json .\scripts\parser\
-call docker exec -d sonarqube python3 
+call docker exec sonarqube python3 /parser/HTMLtoJSON.py
 call mkdir result
 call move .\scripts\parser\resultados.csv .\result\AUD_COD_YYYYMMDD_PROJECT_NAME.csv
 set /p exit="Press intro to exit..."

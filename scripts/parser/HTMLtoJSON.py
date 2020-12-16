@@ -15,7 +15,7 @@ import json
 
 def toCSV(json):
     
-    f = csv.writer(open("resultados.csv", 'w', newline=''))
+    f = csv.writer(open("/parser/resultados.csv", 'w', newline=''))
 
     #Cabeceras del CSV
     f.writerow(["Riesgo", "Vulnerabilidad", "Tipo", "Tecnología", "Descripción", "Solución", "Archivos afectados", "Línea afectada", "CWE" ])
@@ -25,7 +25,7 @@ def toCSV(json):
                     
                     
 if __name__ == "__main__":
-    with open('allRecords.json') as data:
+    with open('/parser/allRecords.json') as data:
         json = json.load(data)
     #print(len(json))
     
