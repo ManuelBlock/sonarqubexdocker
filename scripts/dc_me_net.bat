@@ -18,7 +18,7 @@ set /p folder="Name of the folder: "
 
 ::This command print the output of the dependency check
 ::It will help to determine if there is any problem
-call dependency-check\bin\dependency-check.bat -s "..\..\..\%folder%"
+call dependency-check\bin\dependency-check.bat -s "..\..\..\%folder%" -f CSV -f HTML
 
 if not exist ..\..\..\target (
     mkdir ..\..\..\target

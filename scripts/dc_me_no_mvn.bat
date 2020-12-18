@@ -20,7 +20,7 @@ set /p file=Please, paste full name (with extension) of the war/jar:
 
 ::This command print the output of the dependency check
 ::It will help to determine if there is any problem
-call dependency-check\bin\dependency-check.bat -s input\%file%
+call dependency-check\bin\dependency-check.bat -s input\%file% -f CSV -f HTML
 
 if not exist ..\..\..\target (
     mkdir ..\..\..\target

@@ -24,6 +24,8 @@ rl.on("close", function() {
     scanner({
             serverUrl: 'http://localhost:9000',
             options: {
+                'sonar.login': "admin",
+                'sonar.password': "admin",
                 'sonar.projectKey': opt.sonar.projectKey,
                 'sonar.projectName': name,
                 'sonar.projectDescription': description,
