@@ -4,3 +4,4 @@ req/.wget-hsts
 node_modules
 package-lock.json
 .vscode
+*.json
