@@ -1,5 +1,6 @@
 
-req/dc/dependency-check/
+req/dc/
 req/.wget-hsts
 node_modules
 package-lock.json
+.vscode
