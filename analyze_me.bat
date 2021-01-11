@@ -2,6 +2,7 @@
 ::Install sonarqube-scanner
 echo Installing sonarqube scanner
 call npm install sonarqube-scanner --save-dev
+call npm install request --save-dev
 ::Create and initiate sonarqube server on Docker
 echo Creating the sonarqube image
 call docker build -t sonarqube .
