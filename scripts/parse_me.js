@@ -1,12 +1,34 @@
 var request = require('request');
 const fs = require('fs')
+const readline = require("readline");
 
-var projectKey = "CIBERSEG";
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
 var page = 1;
 var response = '';
 var outputJson = [];
+var projectKey, password, bearer;
 
-loop();
+rl.question("Project Key (same name as project): ", function(projectKey_in) {
+    rl.question("Password in SonarQube (by default it is 'admin'): ", function(password_in) {
+        projectKey = projectKey_in;
+        bearer = `admin:` + password_in;
+        const buff = Buffer.from(bearer, 'utf-8');
+        // decode buffer as Base64
+        const bearer64 = buff.toString('base64');
+        password = `Basic ` + bearer64;
+        rl.close();
+    });
+});
+
+rl.on("close", function() {
+    loop();
+});
+
+
 
 async function getSolutionsCWE() {
     return new Promise(function(resolve, reject) {
@@ -18,7 +40,7 @@ async function getSolutionsCWE() {
                 'method': 'GET',
                 'url': url,
                 'headers': {
-                    'Authorization': 'Basic YWRtaW46YWRtaW4='
+                    'Authorization': password
                 }
             };
             request(options, function(error, response) {

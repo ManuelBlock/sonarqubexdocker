@@ -26,7 +26,7 @@ rl.on("close", function() {
             options: {
                 'sonar.login': "admin",
                 'sonar.password': "admin",
-                'sonar.projectKey': opt.sonar.projectKey,
+                'sonar.projectKey': name,
                 'sonar.projectName': name,
                 'sonar.projectDescription': description,
                 'sonar.sources': folder,
