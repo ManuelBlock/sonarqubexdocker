@@ -1,0 +1,10 @@
+{
+  "projectKey": "name",
+  "sources": "src",
+  "java_binaries": "target/classes",
+  "projectBaseDir": "../",
+  "sourceEncoding": "UTF-8",
+  "dependencyCheck_htmlReportPath": "target/dependency-check-report.html",
+  "login": "admin",
+  "password": "admin1234"
+}
