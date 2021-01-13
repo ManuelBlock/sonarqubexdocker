@@ -23,6 +23,7 @@ if "%code%"=="java" if "%dc_yn%"=="y" (
 ) else (
     call scripts\dc_me_no_mvn.bat
 )
+call node scripts\password_manager.js
 ::Run sonarqube-scanner
 echo Executing the sonarqube scanner
 call node scripts\scan_me.js

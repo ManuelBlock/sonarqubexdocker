@@ -1,34 +1,20 @@
 var request = require('request');
-const fs = require('fs')
-const readline = require("readline");
-
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+const fs = require('fs');
+let opt = JSON.parse(fs.readFileSync("scripts/config.json"));
 
 var page = 1;
 var response = '';
 var outputJson = [];
 var projectKey, password, bearer;
 
-rl.question("Project Key (same name as project): ", function(projectKey_in) {
-    rl.question("Password in SonarQube (by default it is 'admin'): ", function(password_in) {
-        projectKey = projectKey_in;
-        bearer = `admin:` + password_in;
-        const buff = Buffer.from(bearer, 'utf-8');
-        // decode buffer as Base64
-        const bearer64 = buff.toString('base64');
-        password = `Basic ` + bearer64;
-        rl.close();
-    });
-});
+bearer = `admin:` + opt.password;
+const buff = Buffer.from(bearer, 'utf-8');
+// decode buffer as Base64
+const bearer64 = buff.toString('base64');
+password = `Basic ` + bearer64;
+projectKey = opt.projectKey;
 
-rl.on("close", function() {
-    loop();
-});
-
-
+loop();
 
 async function getSolutionsCWE() {
     return new Promise(function(resolve, reject) {
