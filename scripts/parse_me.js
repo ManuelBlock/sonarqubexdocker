@@ -54,10 +54,12 @@ async function loop() {
         page += 1;
         loop();
     } else {
-        await getSolutionsCWE()
-        fs.writeFile('allRecords.json', JSON.stringify(outputJson), function(err) {
-            if (err) return console.log(err);
-        });
+        if (outputJson.length != 0) {
+            await getSolutionsCWE()
+            fs.writeFile('allRecords.json', JSON.stringify(outputJson), function(err) {
+                if (err) return console.log(err);
+            });
+        }
     }
 }
 
