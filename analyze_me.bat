@@ -24,19 +24,20 @@ if "%code%"=="java" if "%dc_yn%"=="y" (
     call scripts\dc_me_no_mvn.bat
 )
 call node scripts\password_manager.js
-::Clean previous allRecords.json if it exists
-if exist scripts\parser\allRecords.json (
-    call del scripts\parser\allRecords.json
-)
 ::Run sonarqube-scanner
 echo Executing the sonarqube scanner
 call node scripts\scan_me.js
 echo Let sonarqube to prepare the analysis
 call timeout 300
 call node scripts\parse_me.js
-call del -R result
-call mkdir result
+if exist result (
+    rmdir /Q /S result
+)
+mkdir result
 if exist scripts\parser\allRecords.json (
+    rmdir /Q /S scripts\parser\allRecords.json
+)
+if exist .\allRecords.json (
     call move .\allRecords.json .\scripts\parser\
     call docker exec sonarqube python3 /parser/HTMLtoJSON.py
     call move .\scripts\parser\resultados.csv .\result\AUD_COD_YYYYMMDD_PROJECT_NAME.csv
